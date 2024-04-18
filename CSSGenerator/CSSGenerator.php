@@ -150,7 +150,7 @@ class CSSGenerator implements ICustomSelector, ICustomProperty, IColorProperty, 
 		return $this;
 	}
 	public function addClass(string $selector): CSSGenerator{
-		$selector = ".".selector;
+		$selector = ".".$selector;
 		if( $this->__doesSelectorExist($selector) ){
 			$this->__currentSELECTOR = $selector;
 			return $this;
@@ -160,7 +160,7 @@ class CSSGenerator implements ICustomSelector, ICustomProperty, IColorProperty, 
 		return $this;
 	}
 	public function addID(string $selector): CSSGenerator{
-		$selector = "#".selector;
+		$selector = "#".$selector;
 		if( $this->__doesSelectorExist($selector) ){
 			$this->__currentSELECTOR = $selector;
 			return $this;
