@@ -135,16 +135,47 @@ class CSSGenerator implements ICustomSelector, ICustomProperty, IColorProperty, 
 	}
 
 	// ICustomSelector
-	// public function addElement(string $selector): CSSGenerator{
-	// 	/*
-	// 	 * if exist already will not overwrite
-	// 	 */
-	// 	if( $this->__doesSelectorExist($selector) ){
-	// 		$this->__
-	// 	}
-	// }
- //    public function addClass(string $selector): CSSGenerator;
- //    public function addID(string $selector): CSSGenerator;
- //    public function addSelector(string $selector): CSSGenerator;
- //    public function selectSelector(string $selector): CSSGenerator;
+	public function addElement(string $selector): CSSGenerator{
+		/* $__styleArr
+		 * $__currentSELECTOR
+		 * if exist already will not overwrite
+		 * else will add selector
+		 */
+		if( $this->__doesSelectorExist($selector) ){
+			$this->__currentSELECTOR = $selector;
+			return $this;
+		}
+		$this->__currentSELECTOR = $selector;
+		$__styleArr[ $this->__currentSELECTOR ] = [];
+		return $this;
+	}
+	public function addClass(string $selector): CSSGenerator{
+		$selector = ".".selector;
+		if( $this->__doesSelectorExist($selector) ){
+			$this->__currentSELECTOR = $selector;
+			return $this;
+		}
+		$this->__currentSELECTOR = $selector;
+		$__styleArr[ $this->__currentSELECTOR ] = [];
+		return $this;
+	}
+	public function addID(string $selector): CSSGenerator{
+		$selector = "#".selector;
+		if( $this->__doesSelectorExist($selector) ){
+			$this->__currentSELECTOR = $selector;
+			return $this;
+		}
+		$this->__currentSELECTOR = $selector;
+		$__styleArr[ $this->__currentSELECTOR ] = [];
+		return $this;
+	}
+	public function selectSelector(string $selector): CSSGenerator{
+		if( $this->__doesSelectorExist($selector) ){
+			$this->__currentSELECTOR = $selector;
+			return $this;
+		}
+		$this->__currentSELECTOR = $selector;
+		$__styleArr[ $this->__currentSELECTOR ] = [];
+		return $this;
+	}
 }
