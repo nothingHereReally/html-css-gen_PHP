@@ -4,7 +4,6 @@ interface ICustomSelector{
     public function addElement(string $selector): ICustomSelector;
     public function addClass(string $selector): ICustomSelector;
     public function addID(string $selector): ICustomSelector;
-    public function addSelector(string $selector): ICustomSelector;
     public function selectSelector(string $selector): ICustomSelector;
     /*
      * possible formation:
