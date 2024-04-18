@@ -3,11 +3,12 @@
 namespace Generator\CSS;
 
 class CSSGenerator implements ICustomSelector, ICustomProperty, IColorProperty, IBackgroundProperty, IFontProperty, ICSSExport{
-
 	private array $__styleArr = [];
 	private string $__currentSELECTOR = "";
-	public function __construct(string $selector=NULL) {
-		if( $selector!=NULL ){
+
+
+	public function __construct(string $selector="") {
+		if( $selector!="" ){
 			$this->__styleArr[$selector] = [];
 			$this->__currentSELECTOR = $selector;
 			/*
@@ -42,6 +43,15 @@ class CSSGenerator implements ICustomSelector, ICustomProperty, IColorProperty, 
 	private function __setKeyVal(string $key, string $val): void{
 		$this->__styleArr[ $this->__currentSELECTOR ][$key] = $val;
 	}
+	private function __selectSelector(string $selector): CSSGenerator{
+		if( $this->__doesSelectorExist($selector) ){
+			$this->__currentSELECTOR = $selector;
+			return $this;
+		}
+		$this->__currentSELECTOR = $selector;
+		$this->__styleArr[ $this->__currentSELECTOR ] = [];
+		return $this;
+	}
 	private function __error(): void{
 		echo "error, must select selector first";
 		throw new ErrorException("error, must select selector first", 1);
@@ -73,7 +83,7 @@ class CSSGenerator implements ICustomSelector, ICustomProperty, IColorProperty, 
 	}
 	public function setOpacity(string $opacity = "1"): CSSGenerator{
 		if( $this->__doesSelectorExist() ){
-			$this->__setKeyVal("opacity", ( (int)$opacity <= 1 )? $opacity: (string)( (int)$opacity/100 ));
+			$this->__setKeyVal( "opacity", (((int)$opacity <= 1)? $opacity: (string)( (int)$opacity/100 )) );
 			return $this;
 		}
 		$this->__error();
@@ -141,42 +151,18 @@ class CSSGenerator implements ICustomSelector, ICustomProperty, IColorProperty, 
 		 * if exist already will not overwrite
 		 * else will add selector
 		 */
-		if( $this->__doesSelectorExist($selector) ){
-			$this->__currentSELECTOR = $selector;
-			return $this;
-		}
-		$this->__currentSELECTOR = $selector;
-		$__styleArr[ $this->__currentSELECTOR ] = [];
-		return $this;
+		return $this->__selectSelector( $selector );
 	}
 	public function addClass(string $selector): CSSGenerator{
 		$selector = ".".$selector;
-		if( $this->__doesSelectorExist($selector) ){
-			$this->__currentSELECTOR = $selector;
-			return $this;
-		}
-		$this->__currentSELECTOR = $selector;
-		$__styleArr[ $this->__currentSELECTOR ] = [];
-		return $this;
+		return $this->__selectSelector( $selector );
 	}
 	public function addID(string $selector): CSSGenerator{
 		$selector = "#".$selector;
-		if( $this->__doesSelectorExist($selector) ){
-			$this->__currentSELECTOR = $selector;
-			return $this;
-		}
-		$this->__currentSELECTOR = $selector;
-		$__styleArr[ $this->__currentSELECTOR ] = [];
-		return $this;
+		return $this->__selectSelector( $selector );
 	}
 	public function selectSelector(string $selector): CSSGenerator{
-		if( $this->__doesSelectorExist($selector) ){
-			$this->__currentSELECTOR = $selector;
-			return $this;
-		}
-		$this->__currentSELECTOR = $selector;
-		$this->__styleArr[ $this->__currentSELECTOR ] = [];
-		return $this;
+		return $this->__selectSelector( $selector );
 	}
 
 	// ICSSExport
@@ -193,3 +179,4 @@ class CSSGenerator implements ICustomSelector, ICustomProperty, IColorProperty, 
 		return $out;
 	}
 }
+
