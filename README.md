@@ -29,7 +29,7 @@ git checkout -b branch_nameUwant
 ```bash
 git branch
 ```
-#### to check change branch your in
+#### to change branch your in
 ```bash
 git checkout name_of_branch_to_go_to
 ```
