@@ -2,7 +2,7 @@
 
 namespace Generator\CSS;
 
-class CSSGenerator implements ICustomSelector, ICustomProperty, IColorProperty, IBackgroundProperty, IFontProperty{
+class CSSGenerator implements ICustomSelector, ICustomProperty, IColorProperty, IBackgroundProperty, IFontProperty, ICSSExport{
 
 	private array $__styleArr = [];
 	private string $__currentSELECTOR = "";
@@ -175,7 +175,21 @@ class CSSGenerator implements ICustomSelector, ICustomProperty, IColorProperty, 
 			return $this;
 		}
 		$this->__currentSELECTOR = $selector;
-		$__styleArr[ $this->__currentSELECTOR ] = [];
+		$this->__styleArr[ $this->__currentSELECTOR ] = [];
 		return $this;
+	}
+
+	// ICSSExport
+	public function getCSStext(): string{
+		$out = "";
+		foreach( $this->__styleArr as $selector => $props ){
+			$out = $out.$selector;
+			$out = $out."{\n";
+			foreach ($props as $prop => $val) {
+				$out = $out."    ".$prop.": ".$val";\n";
+			}
+			$out = $out."}\n";
+		}
+		return $out;
 	}
 }
