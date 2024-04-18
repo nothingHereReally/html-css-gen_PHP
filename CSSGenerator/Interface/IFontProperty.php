@@ -1,3 +1,5 @@
+<?php
+
 interface IFontProperty{
     public function setFontFamily(string $family = "sans-serif"): IFontProperty;
     public function setFontSize(string $size = "16px"): IFontProperty;
