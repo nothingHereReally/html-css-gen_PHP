@@ -7,27 +7,25 @@ class CSSGenerator implements ICustomSelector, ICustomProperty, IColorProperty, 
 	private string $__currentSELECTOR = "";
 
 
-	public function __construct(string $selector="") {
-		if( $selector!="" ){
-			$this->__styleArr[$selector] = [];
-			$this->__currentSELECTOR = $selector;
-			/*
-			 * structure goal be( $__styleArr ) eg.:
-			 * [
-			 *		"a" => [
-			 *		 	"color" => "#FDFDFD", -- font color
-			 *		 	"font-family" => "sans-serif",
-			 *		 	"background-color" => "#010101"
-			 *		],
-			 *		"p" => [
-			 *		 	"color" => "#FDFDFD", -- font color
-			 *		 	"font-family" => "roboto",
-			 *		 	"font-size" => "13px",
-			 *		 	"background-color" => "#010101"
-			 *		]
-			 * ]
-			 */
-		}
+	public function __construct(string $selector = "*" ){
+		$this->__currentSELECTOR = $selector;
+		$this->__styleArr[ $this->__currentSELECTOR ] = [];
+		/*
+		 * structure goal be( $__styleArr ) eg.:
+		 * [
+		 *		"a" => [
+		 *		 	"color" => "#FDFDFD", -- font color
+		 *		 	"font-family" => "sans-serif",
+		 *		 	"background-color" => "#010101"
+		 *		],
+		 *		"p" => [
+		 *		 	"color" => "#FDFDFD", -- font color
+		 *		 	"font-family" => "roboto",
+		 *		 	"font-size" => "13px",
+		 *		 	"background-color" => "#010101"
+		 *		]
+		 * ]
+		 */
 	}
 	public function __destruct() {
 		$this->__currentSELECTOR = NULL;
@@ -36,20 +34,23 @@ class CSSGenerator implements ICustomSelector, ICustomProperty, IColorProperty, 
 	}
 	private function __doesSelectorExist(string $selector = ""): bool{
 		if( $selector!="" ){
+
 			return isset( $this->__styleArr[ $selector ] );
 		}
-		return $this->__currentSELECTOR!="" && isset( $this->__styleArr[ $this->__currentSELECTOR ] );
+
+		return isset( $this->__styleArr[ $this->__currentSELECTOR ] );
 	}
 	private function __setKeyVal(string $key, string $val): void{
 		$this->__styleArr[ $this->__currentSELECTOR ][$key] = $val;
 	}
 	private function __selectSelector(string $selector): CSSGenerator{
+		$this->__currentSELECTOR = $selector;
 		if( $this->__doesSelectorExist($selector) ){
-			$this->__currentSELECTOR = $selector;
+
 			return $this;
 		}
-		$this->__currentSELECTOR = $selector;
 		$this->__styleArr[ $this->__currentSELECTOR ] = [];
+
 		return $this;
 	}
 	private function __error(): void{
@@ -61,6 +62,7 @@ class CSSGenerator implements ICustomSelector, ICustomProperty, IColorProperty, 
 	public function setBGColor(string $color = "#FDFDFD"): CSSGenerator{
 		if( $this->__doesSelectorExist() ){
 			$this->__setKeyVal("background-color", $color);
+
 			return $this;
 		}
 		$this->__error();
@@ -68,6 +70,7 @@ class CSSGenerator implements ICustomSelector, ICustomProperty, IColorProperty, 
 	public function setImage_bg(string $imgDir): CSSGenerator{
 		if( $this->__doesSelectorExist() ){
 			$this->__setKeyVal("background-image", "url(\"".$imgDir."\")");
+
 			return $this;
 		}
 		$this->__error();
@@ -77,13 +80,15 @@ class CSSGenerator implements ICustomSelector, ICustomProperty, IColorProperty, 
 	public function setColor(string $color = "#010101"): CSSGenerator{
 		if( $this->__doesSelectorExist() ){
 			$this->__setKeyVal("color", $color);
+
 			return $this;
 		}
 		$this->__error();
 	}
 	public function setOpacity(string $opacity = "1"): CSSGenerator{
 		if( $this->__doesSelectorExist() ){
-			$this->__setKeyVal( "opacity", (((int)$opacity <= 1)? $opacity: (string)( (int)$opacity/100 )) );
+			$this->__setKeyVal( "opacity", (((float)$opacity <= 1.0)? $opacity: (string)( (float)$opacity/100 )) );
+
 			return $this;
 		}
 		$this->__error();
@@ -93,6 +98,7 @@ class CSSGenerator implements ICustomSelector, ICustomProperty, IColorProperty, 
 	public function setFontFamily(string $family = "sans-serif"): CSSGenerator{
 		if( $this->__doesSelectorExist() ){
 			$this->__setKeyVal("font-family", $family);
+
 			return $this;
 		}
 		$this->__error();
@@ -100,6 +106,7 @@ class CSSGenerator implements ICustomSelector, ICustomProperty, IColorProperty, 
 	public function setFontSize(string $size = "16px"): CSSGenerator{
 		if( $this->__doesSelectorExist() ){
 			$this->__setKeyVal("font-size", $size);
+
 			return $this;
 		}
 		$this->__error();
@@ -107,6 +114,7 @@ class CSSGenerator implements ICustomSelector, ICustomProperty, IColorProperty, 
 	public function setFontStyle(string $style = "normal"): CSSGenerator{
 		if( $this->__doesSelectorExist() ){
 			$this->__setKeyVal("font-style", $style);
+
 			return $this;
 		}
 		$this->__error();
@@ -120,6 +128,7 @@ class CSSGenerator implements ICustomSelector, ICustomProperty, IColorProperty, 
 		 */
 		if( $this->__doesSelectorExist() ){
 			$this->__setKeyVal($property, $value);
+
 			return $this;
 		}
 		$this->__error();
@@ -139,6 +148,7 @@ class CSSGenerator implements ICustomSelector, ICustomProperty, IColorProperty, 
 			foreach( $keyProp_valValue as $k => $v ){
 				$this->__setKeyVal($k, $v);
 			}
+
 			return $this;
 		}
 		$this->__error();
@@ -154,12 +164,10 @@ class CSSGenerator implements ICustomSelector, ICustomProperty, IColorProperty, 
 		return $this->__selectSelector( $selector );
 	}
 	public function addClass(string $selector): CSSGenerator{
-		$selector = ".".$selector;
-		return $this->__selectSelector( $selector );
+		return $this->__selectSelector( ".".$selector );
 	}
 	public function addID(string $selector): CSSGenerator{
-		$selector = "#".$selector;
-		return $this->__selectSelector( $selector );
+		return $this->__selectSelector( "#".$selector );
 	}
 	public function selectSelector(string $selector): CSSGenerator{
 		return $this->__selectSelector( $selector );
@@ -176,6 +184,7 @@ class CSSGenerator implements ICustomSelector, ICustomProperty, IColorProperty, 
 			}
 			$out = $out."}\n";
 		}
+
 		return $out;
 	}
 }
