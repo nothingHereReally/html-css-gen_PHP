@@ -1,6 +1,12 @@
 <?php
 
 namespace Generator\CSS;
+use Generator\CSS\Interface\IBackgroundProperty as IBackgroundProperty;
+use Generator\CSS\Interface\IColorProperty as IColorProperty;
+use Generator\CSS\Interface\ICSSExport as ICSSExport;
+use Generator\CSS\Interface\ICustomProperty as ICustomProperty;
+use Generator\CSS\Interface\ICustomSelector as ICustomSelector;
+use Generator\CSS\Interface\IFontProperty as IFontProperty;
 
 class CSSGenerator implements ICustomSelector, ICustomProperty, IColorProperty, IBackgroundProperty, IFontProperty, ICSSExport{
 	private array $__styleArr = [];
@@ -27,11 +33,15 @@ class CSSGenerator implements ICustomSelector, ICustomProperty, IColorProperty, 
 		 * ]
 		 */
 	}
-	public function __destruct() {
-		$this->__currentSELECTOR = NULL;
-		$this->__styleArr = NULL;
-		$this = NULL;
-	}
+
+	// __destruct() results in ERRORS
+
+	// public function __destruct() {
+	// 	$this->__currentSELECTOR = NULL;
+	// 	$this->__styleArr = NULL;
+	// 	$this = NULL;
+	// }
+
 	private function __doesSelectorExist(string $selector = ""): bool{
 		if( $selector!="" ){
 
@@ -180,7 +190,7 @@ class CSSGenerator implements ICustomSelector, ICustomProperty, IColorProperty, 
 			$out = $out.$selector;
 			$out = $out."{\n";
 			foreach ($props as $prop => $val) {
-				$out = $out."    ".$prop.": ".$val";\n";
+				$out = $out."    ".$prop.": ".$val.";\n";
 			}
 			$out = $out."}\n";
 		}
