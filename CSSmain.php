@@ -7,7 +7,7 @@
 <body>
 
    <!-- HTML form with POST method -->
-   <form action="" method="post">
+   <form action="CSSmain.php" method="post">
         <!-- User needs to type php tags and "use Generator\CSS\CSSGenerator as CSSGenerator;" inside -->
         <textarea name="php_code" rows="10" cols="50">
 &lt;?php
@@ -15,7 +15,7 @@ use Generator\CSS\CSSGenerator as CSSGenerator;
 
 // Add Code Here
 
-$cssGenerator = new CSSGenerator("test");
+$cssGenerator = new CSSGenerator();
 echo $cssGenerator->setFontStyle()->getCSStext();
 
 ?&gt;
@@ -34,10 +34,11 @@ echo $cssGenerator->setFontStyle()->getCSStext();
     }
 
     // Execute the PHP code stored in the session variable
-    if (isset($_SESSION["php_code"])) {
+    if( isset($_SESSION["php_code"]) ){
         eval('?>' . $_SESSION["php_code"] . '<?php ');
     }
    ?>
 
 </body>
 </html>
+
