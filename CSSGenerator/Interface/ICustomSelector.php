@@ -1,5 +1,5 @@
 <?php
-
+namespace Generator\CSS\Interface;
 interface ICustomSelector{
     public function addElement(string $selector): ICustomSelector;
     public function addClass(string $selector): ICustomSelector;
