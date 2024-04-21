@@ -36,11 +36,10 @@ class CSSGenerator implements ICustomSelector, ICustomProperty, IColorProperty, 
 
 	// __destruct() results in ERRORS
 
-	// public function __destruct() {
-	// 	$this->__currentSELECTOR = NULL;
-	// 	$this->__styleArr = NULL;
-	// 	$this = NULL;
-	// }
+	public function __destruct() {
+		$this->__currentSELECTOR = NULL;
+		$this->__styleArr = NULL;
+	}
 
 	private function __doesSelectorExist(string $selector = ""): bool{
 		if( $selector!="" ){
