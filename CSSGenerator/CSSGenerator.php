@@ -199,6 +199,7 @@ class CSSGenerator implements ICustomSelector, ICustomProperty, IColorProperty, 
 	public function put2file(string $file = "file.css", bool $isAppend = true, string $customDir = "./css"): bool{
 		if( $customDir!="" || $customDir!="./" || $customDir!="/" ){
 			mkdir($customDir, 0755, true);
+			return file_put_contents("./".$filesir, $this->getCSStext(), ($isAppend? FILE_APPEND: 0));
 		}
 		return file_put_contents($customDir."/".$filesir, $this->getCSStext(), ($isAppend? FILE_APPEND: 0));
 	}
