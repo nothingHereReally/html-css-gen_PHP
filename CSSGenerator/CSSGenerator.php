@@ -34,8 +34,6 @@ class CSSGenerator implements ICustomSelector, ICustomProperty, IColorProperty, 
 		 */
 	}
 
-	// __destruct() results in ERRORS
-
 	public function __destruct() {
 		$this->__currentSELECTOR = NULL;
 		$this->__styleArr = NULL;
@@ -54,7 +52,8 @@ class CSSGenerator implements ICustomSelector, ICustomProperty, IColorProperty, 
 	}
 	private function __selectSelector(string $selector): CSSGenerator{
 		$this->__currentSELECTOR = $selector;
-		if( $this->__doesSelectorExist($selector) ){
+		// if( $this->__doesSelectorExist($selector) ){ // same as below, just below is shorter
+		if( $this->__doesSelectorExist() ){
 
 			return $this;
 		}
@@ -62,9 +61,9 @@ class CSSGenerator implements ICustomSelector, ICustomProperty, IColorProperty, 
 
 		return $this;
 	}
-	private function __error(): void{
-		echo "error, must select selector first";
-		throw new ErrorException("error, must select selector first", 1);
+	private function __error(string $msg = "must select selector first"): void{
+		echo "error, ".$msg;
+		throw new ErrorException("error, ".$msg, 1);
 	}
 
 	// IBackgroundProperty
@@ -76,9 +75,9 @@ class CSSGenerator implements ICustomSelector, ICustomProperty, IColorProperty, 
 		}
 		$this->__error();
 	}
-	public function setImage_bg(string $imgDir): CSSGenerator{
+	public function setImage_bg(string $imgDirOrURL): CSSGenerator{
 		if( $this->__doesSelectorExist() ){
-			$this->__setKeyVal("background-image", "url(\"".$imgDir."\")");
+			$this->__setKeyVal("background-image", "url(\"".$imgDirOrURL."\")");
 
 			return $this;
 		}
@@ -96,6 +95,9 @@ class CSSGenerator implements ICustomSelector, ICustomProperty, IColorProperty, 
 	}
 	public function setOpacity(string $opacity = "1"): CSSGenerator{
 		if( $this->__doesSelectorExist() ){
+			if( (float)$opacity<0 || 100<(float)$opacity ){
+				$this->__error("opacity can just be between 0 to 1, or 0 to 100, but will just overwrite to 0 to 1")
+			}
 			$this->__setKeyVal( "opacity", (((float)$opacity <= 1.0)? $opacity: (string)( (float)$opacity/100 )) );
 
 			return $this;
