@@ -166,7 +166,7 @@ class CSSGenerator implements ICustomSelector, ICustomProperty, IColorProperty, 
 	}
 
 	// ICustomSelector
-	public function addElement(string $selector): CSSGenerator{
+	public function addSelector(string $selector): CSSGenerator{
 		/* $__styleArr
 		 * $__currentSELECTOR
 		 * if exist already will not overwrite
