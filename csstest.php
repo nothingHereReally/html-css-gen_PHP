@@ -1,12 +1,15 @@
 <?php
-require "autoloader.php"
+require_once "autoloader.php";
 use Generator\CSS\CSSGenerator as CSSGen;
 
 $style = new CSSGen();
 $style->addSelector("h1")->setColor("#8a1a14");
 $style->addSelector("hr")->setColor("#60570e");
 $style->selectSelector("*")->setFontFamily("sans-serif");
-$style->alterProp("font-family", $style->getPropValues("font-family").", Roboto");
+$style->alterProp("font-family", $style->getPropValues("font-family").", arial");
+$style->selectSelector("h1")->setFontFamily("calibri");
+
+$style->put2file( $file = "file.css", $isAppend = false, $customDir = "./css");
 ?>
 
 <!DOCTYPE html>
