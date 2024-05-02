@@ -181,6 +181,9 @@ class CSSGenerator implements ICustomSelector, ICustomProperty, IColorProperty, 
 		}
 		$this->error("that property is not set, use addProp(), to set a value");
 	}
+	public function isPropExist(string $property): bool{
+		return isset( $this->__styleArr[ $this->__currentSELECTOR ][$property] );
+	}
 
 	// ICustomSelector
 	public function addSelector(string $selector): CSSGenerator{
