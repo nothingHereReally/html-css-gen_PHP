@@ -9,8 +9,8 @@ use Generator\CSS\Interface\ICustomSelector as ICustomSelector;
 use Generator\CSS\Interface\IFontProperty as IFontProperty;
 
 class CSSGenerator implements ICustomSelector, ICustomProperty, IColorProperty, IBackgroundProperty, IFontProperty, ICSSExport{
-	private array $__styleArr = [];
-	private string $__currentSELECTOR = "";
+	private ?array $__styleArr = [];
+	private ?string $__currentSELECTOR = "";
 
 
 	public function __construct(string $selector = "*" ){
@@ -63,7 +63,7 @@ class CSSGenerator implements ICustomSelector, ICustomProperty, IColorProperty, 
 	}
 	private function __error(string $msg = "must select selector first"): void{
 		echo "error, ".$msg;
-		throw new ErrorException("error, ".$msg, 1);
+		throw new \ErrorException("error, ".$msg, 1);
 	}
 
 	// IBackgroundProperty
@@ -96,7 +96,7 @@ class CSSGenerator implements ICustomSelector, ICustomProperty, IColorProperty, 
 	public function setOpacity(string $opacity = "1"): CSSGenerator{
 		if( $this->__doesSelectorExist() ){
 			if( (float)$opacity<0 || 100<(float)$opacity ){
-				$this->__error("opacity can just be between 0 to 1, or 0 to 100, but will just overwrite to 0 to 1")
+				$this->__error("opacity can just be between 0 to 1, or 0 to 100, but will just overwrite to 0 to 1");
 			}
 			$this->__setKeyVal( "opacity", (((float)$opacity <= 1.0)? $opacity: (string)( (float)$opacity/100 )) );
 
@@ -179,7 +179,7 @@ class CSSGenerator implements ICustomSelector, ICustomProperty, IColorProperty, 
 		if( $this->__doesSelectorExist() && isset($this->__styleArr[ $this->__currentSELECTOR ][$property]) ){
 			return $this->__styleArr[ $this->__currentSELECTOR ][$property];
 		}
-		$this->error("that property is not set, use addProp(), to set a value");
+		$this->__error("that property is not set, use addProp(), to set a value");
 	}
 	public function isPropExist(string $property): bool{
 		return isset( $this->__styleArr[ $this->__currentSELECTOR ][$property] );
@@ -218,12 +218,11 @@ class CSSGenerator implements ICustomSelector, ICustomProperty, IColorProperty, 
 
 		return $out;
 	}
-	public function put2file(string $file = "file.css", bool $isAppend = true, string $customDir = "./css"): bool{
-		if( $customDir!="" || $customDir!="./" || $customDir!="/" ){
+	public function put2file(string $file = "file.css", bool $isAppend = true, string $customDir = "./css"): bool {
+		if (!is_dir($customDir)) {
 			mkdir($customDir, 0755, true);
-			return file_put_contents("./".$filesir, $this->getCSStext(), ($isAppend? FILE_APPEND: 0));
 		}
-		return file_put_contents($customDir."/".$filesir, $this->getCSStext(), ($isAppend? FILE_APPEND: 0));
+		return file_put_contents($customDir . "/" . $file, $this->getCSStext(), ($isAppend ? FILE_APPEND : 0));
 	}
 	public function mkfile(): bool{
 		return $this->put2file();
