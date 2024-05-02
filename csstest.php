@@ -1,13 +1,12 @@
 <?php
 require "autoloader.php"
-
 use Generator\CSS\CSSGenerator as CSSGen;
+
 $style = new CSSGen();
 $style->addSelector("h1")->setColor("#8a1a14");
 $style->addSelector("hr")->setColor("#60570e");
 $style->selectSelector("*")->setFontFamily("sans-serif");
 $style->alterProp("font-family", $style->getPropValues("font-family").", Roboto");
-
 ?>
 
 <!DOCTYPE html>
