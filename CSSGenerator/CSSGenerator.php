@@ -21,7 +21,7 @@ class CSSGenerator implements ICustomSelector, ICustomProperty, IColorProperty, 
 		 * [
 		 *		"a" => [
 		 *		 	"color" => "#FDFDFD", -- font color
-		 *		 	"font-family" => "sans-serif",
+		 *		 	"font-family" => "sans-serif, Roboto", -- mandated structure if multiple values
 		 *		 	"background-color" => "#010101"
 		 *		],
 		 *		"p" => [
@@ -138,6 +138,9 @@ class CSSGenerator implements ICustomSelector, ICustomProperty, IColorProperty, 
 		* $property: $value; // look like on CSS
 		 */
 		if( $this->__doesSelectorExist() ){
+			if( isset($this->__styleArr[ $this->__currentSELECTOR ][$property]) ){
+				$this->__error("property already exist, use alterProp(\"prop\", \"value\") to overwrite the value");
+			}
 			$this->__setKeyVal($property, $value);
 
 			return $this;
@@ -163,6 +166,23 @@ class CSSGenerator implements ICustomSelector, ICustomProperty, IColorProperty, 
 			return $this;
 		}
 		$this->__error();
+	}
+	public function alterProp(string $property, string $value): CSSGenerator{
+		if( $this->__doesSelectorExist() ){
+			$this->__setKeyVal($property, $value);
+
+			return $this;
+		}
+		$this->__error();
+	}
+	public function getPropValues(string $property): string{
+		if( $this->__doesSelectorExist() && isset($this->__styleArr[ $this->__currentSELECTOR ][$property]) ){
+			return $this->__styleArr[ $this->__currentSELECTOR ][$property];
+		}
+		$this->error("that property is not set, use addProp(), to set a value");
+	}
+	public function isPropExist(string $property): bool{
+		return isset( $this->__styleArr[ $this->__currentSELECTOR ][$property] );
 	}
 
 	// ICustomSelector
