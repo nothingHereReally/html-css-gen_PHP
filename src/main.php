@@ -5,5 +5,6 @@ require_once "./libretto.php";
 /*
  * directory output string: "../outdir/"
  * example: "../outdir/libretto.html"
+ * for css be: "../outdir/styles"
  */
 
