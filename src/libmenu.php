@@ -1,5 +1,4 @@
 <?php
-require_once "autoloader.php";
 use Generator\CSS\CSSGenerator as CSSGen;
 
 $style = new CSSGen("#mainmenu, .sub1, .sub2");
