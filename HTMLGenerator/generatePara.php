@@ -12,7 +12,8 @@ class generatePara
 
     public function newP($content = '', $attribute = [])
     {
-        $myfile = fopen("{$this->fileName}.html", "a") or die("Unable to open file!");
+        
+        $myfile = fopen("../outdir/" . $this->fileName . ".html", "a") or die("Unable to open file!");
         $tag = "<p";
         foreach ($attribute as $key => $value) {
             $tag .= " $key=\"$value\"";

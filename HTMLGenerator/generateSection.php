@@ -12,7 +12,8 @@ class generateSection
 
     public function newSection($attribute = [])
     {
-        $myfile = fopen("{$this->fileName}.html", "a") or die("Unable to open file!");
+        
+        $myfile = fopen("../outdir/" . $this->fileName . ".html", "a") or die("Unable to open file!");
         $tag = "\n<section";
         foreach ($attribute as $key => $value) {
             $tag .= " $key=\"$value\"";
@@ -25,7 +26,7 @@ class generateSection
 
     public function closeSection()
     {
-        $myfile = fopen("{$this->fileName}.html", "a") or die("Unable to open file!");
+        $myfile = fopen("../outdir/" . $this->fileName . ".html", "a") or die("Unable to open file!");
         $tag = "</section>\n";
         fwrite($myfile, $tag);
         fclose($myfile);

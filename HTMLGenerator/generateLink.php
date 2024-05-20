@@ -12,14 +12,18 @@ class generateLink
 
     public function newLink($linkName, $link, $attribute = [])
     {
-        $myfile = fopen("{$this->fileName}.html", "a") or die("Unable to open file!");
+        
+        $myfile = fopen("../outdir/" . $this->fileName . ".html", "a") or die("Unable to open file!");
         $tag = "<a href='{$link}'";
         foreach ($attribute as $key => $value) {
             $tag .= " $key=\"$value\"";
         }
         $tag .= ">{$linkName}</a>\n";
-        fwrite($myfile, $tag);
 
-        fclose($myfile);
+        
+
+        return  $tag;
     }
+
+    
 }

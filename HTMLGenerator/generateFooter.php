@@ -11,8 +11,11 @@ class generateFooter
     }
 
     public function newFooter($attribute = [])
+
     {
-        $myfile = fopen("{$this->fileName}.html", "a") or die("Unable to open file!");
+        
+        $myfile = fopen("../outdir/" . $this->fileName . ".html", "a") or die("Unable to open file!");
+
         $tag = "<footer";
         foreach ($attribute as $key => $value) {
             $tag .= " $key=\"$value\"";
@@ -25,7 +28,9 @@ class generateFooter
 
     public function closeFooter()
     {
-        $myfile = fopen("{$this->fileName}.html", "a") or die("Unable to open file!");
+       
+        $myfile = fopen("../outdir/" . $this->fileName . ".html", "a") or die("Unable to open file!");
+
         $tag = "</footer>\n";
         fwrite($myfile, $tag);
         fclose($myfile);
