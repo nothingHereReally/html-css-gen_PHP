@@ -13,8 +13,8 @@ use Generator\CSS\Interface\ICSSExport as ICSSExport;
 use Generator\CSS\Interface\ICustomProperty as ICustomProperty;
 use Generator\CSS\Interface\ICustomSelector as ICustomSelector;
 use Generator\CSS\Interface\IFontProperty as IFontProperty;
-
-class CSSGenerator implements ICustomSelector, ICustomProperty, IColorProperty, IBackgroundProperty, IFontProperty, ICSSExport{
+use Generator\CSS\Interface\IFlexboxProperty as IFlexboxProperty;
+class CSSGenerator implements ICustomSelector, ICustomProperty, IColorProperty, IBackgroundProperty, IFontProperty, IFlexboxProperty, ICSSExport{
 	private ?array $__styleArr = [];
 	private ?string $__currentSELECTOR = "";
 
@@ -131,6 +131,64 @@ class CSSGenerator implements ICustomSelector, ICustomProperty, IColorProperty, 
 	public function setFontStyle(string $style = "normal"): CSSGenerator{
 		if( $this->__doesSelectorExist() ){
 			$this->__setKeyVal("font-style", $style);
+
+			return $this;
+		}
+		$this->__error();
+	}
+
+	//IFlexboxProperty
+	public function setDisplay(string $display = "flex"): IFlexboxProperty{
+		if( $this->__doesSelectorExist() ){
+			$this->__setKeyVal("display", $display);
+
+			return $this;
+		}
+		$this->__error();
+	}
+    public function setFlexDirection(string $direction = "column"): IFlexboxProperty{
+		if( $this->__doesSelectorExist() ){
+			$this->__setKeyVal("flex-direction", $direction);
+
+			return $this;
+		}
+		$this->__error();
+	}
+    public function setFlexWrap(string $wrap = "wrap"): IFlexboxProperty{
+		if( $this->__doesSelectorExist() ){
+			$this->__setKeyVal("flex-wrap", $wrap);
+
+			return $this;
+		}
+		$this->__error();
+	}
+    public function setFlexFlow(string $flow = "row wrap"): IFlexboxProperty{
+		if( $this->__doesSelectorExist() ){
+			$this->__setKeyVal("flex-flow", $flow);
+
+			return $this;
+		}
+		$this->__error();
+	}
+    public function setJustifyContent(string $content = "center"): IFlexboxProperty{
+		if( $this->__doesSelectorExist() ){
+			$this->__setKeyVal("justify-content", $content);
+
+			return $this;
+		}
+		$this->__error();
+	}
+    public function setAlignItems(string $item = "center"): IFlexboxProperty{
+		if( $this->__doesSelectorExist() ){
+			$this->__setKeyVal("align-items", $item);
+
+			return $this;
+		}
+		$this->__error();
+	}
+    public function setAlignContent(string $content = "space-between"): IFlexboxProperty{
+		if( $this->__doesSelectorExist() ){
+			$this->__setKeyVal("align-content", $content);
 
 			return $this;
 		}
