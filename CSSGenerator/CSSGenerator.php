@@ -1,6 +1,12 @@
 <?php
-
 namespace Generator\CSS;
+require_once "Interface/IBackgroundProperty.php";
+require_once "Interface/IColorProperty.php";
+require_once "Interface/ICSSExport.php";
+require_once "Interface/ICustomProperty.php";
+require_once "Interface/ICustomSelector.php";
+require_once "Interface/IFontProperty.php";
+
 use Generator\CSS\Interface\IBackgroundProperty as IBackgroundProperty;
 use Generator\CSS\Interface\IColorProperty as IColorProperty;
 use Generator\CSS\Interface\ICSSExport as ICSSExport;
