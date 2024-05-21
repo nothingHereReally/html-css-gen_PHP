@@ -17,9 +17,9 @@ $multimenu->addSelector("body")
 $multimenu->addSelector("#mainmenu, .sub1, .sub2")
 ->addProp("list-style", "none");
 
-$multimenu->addSelector("#mainmenu")
-->addProp("position", "absolute")
-->addProp("bottom", "0");
+// $multimenu->addSelector("#mainmenu")
+// ->addProp("position", "absolute")
+// ->addProp("bottom", "0");
 
 $multimenu->addSelector("#mainmenu li")
 ->addProp("width", "125px")

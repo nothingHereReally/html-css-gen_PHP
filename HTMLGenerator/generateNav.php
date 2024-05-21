@@ -12,7 +12,8 @@ class generateNav
 
     public function newNav($attribute = [])
     {
-        $myfile = fopen("{$this->fileName}.html", "a") or die("Unable to open file!");
+      
+        $myfile = fopen("../outdir/" . $this->fileName . ".html", "a") or die("Unable to open file!");
         $tag = "\n<nav";
         foreach ($attribute as $key => $value) {
             $tag .= " $key=\"$value\"";
@@ -25,7 +26,7 @@ class generateNav
 
     public function closeNav()
     {
-        $myfile = fopen("{$this->fileName}.html", "a") or die("Unable to open file!");
+        $myfile = fopen("../outdir/" . $this->fileName . ".html", "a") or die("Unable to open file!");
         $tag = "</nav>\n";
         fwrite($myfile, $tag);
         fclose($myfile);

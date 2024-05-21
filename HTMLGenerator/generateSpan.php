@@ -1,5 +1,5 @@
 <?php
-class Br
+class generateSpan
 {
     private $fileName;
 
@@ -10,14 +10,15 @@ class Br
         // return $this;
     }
 
-    public function br()
+    public function newSpan($content = '', $attribute = [])
     {
-        // $myfile = fopen("{$this->fileName}.html", "a") or die("Unable to open file!");
-        // $myfile = fopen("../outdir/{$this->fileName}.html", "a") or die("Unable to open file!");
+        
         $myfile = fopen("../outdir/" . $this->fileName . ".html", "a") or die("Unable to open file!");
-
-        $tag = "<br>\n";
-
+        $tag = "<span";
+        foreach ($attribute as $key => $value) {
+            $tag .= " $key=\"$value\"";
+        }
+        $tag .= ">{$content}</span>\n";
         fwrite($myfile, $tag);
 
         fclose($myfile);

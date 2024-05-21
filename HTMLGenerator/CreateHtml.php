@@ -1,9 +1,6 @@
 <?php
-// require_once "generateHeader.php";
-// require_once "generateDiv.php";
-// require_once "generatePara.php";
-// require_once "generateButton.php";
 require_once "autoloader.php";
+
 class CreateHtml
 {
 
@@ -21,13 +18,14 @@ class CreateHtml
     private $section;
     private $nav;
     private $img;
-
-    private $list;
+    public $list;
     private $br;
+    public $link;
+    private $span;
 
-    private $link;
 
-    public function __construct($fileName, $title, $cssLink, $attribute = [])
+    // public function __construct($fileName, $title, $cssLink , $attribute = [])
+    public function __construct($fileName, $title, $cssLink=[] , $attribute = [])
     {
         $this->fileName = $fileName;
         $this->title = $title;
@@ -41,30 +39,15 @@ class CreateHtml
         $this->table = new generateTable($fileName);
         $this->footer = new generateFooter($fileName);
         $this->section = new generateSection($fileName);
-
         $this->nav = new generateNav($fileName);
         $this->header = new generateHeader($fileName);
         $this->list = new generateList($fileName);
-
+        $this->span = new generateSpan($fileName);
         $this->img = new generateImage($fileName);
-
         $this->br = new Br($fileName);
 
-        $myfile = fopen("{$this->fileName}.html", "w") or die("Unable to open file!");
-
-        // $txt = "<!DOCTYPE html>\n";
-        // $txt .= "<html>\n";
-        // $txt .= "<head>\n";
-        // $txt .= "<title>{$this->title}</title>\n";
-        // $txt .= "</head>\n";
-        // $txt .= "<body>\n";
-
-        //added some details for head
-
-
-
-
-
+        //Link To Directory
+        $myfile = fopen("../outdir/" . $this->fileName . ".html", "w") or die("Unable to open file!");
 
 
         $txt = "<!DOCTYPE html>\n";
@@ -73,8 +56,16 @@ class CreateHtml
         $txt .= "<meta charset=\"UTF-8\">\n";
         $txt .= "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n";
         $txt .= "<title>{$this->title}</title>\n";
-        // Link to your CSS file
-        $txt .= "<link rel=\"stylesheet\" href=\"{$this->cssLink}.css\">\n";
+        ////// Link to your CSS file
+
+        foreach ($cssLink as $link) {
+            
+            $txt .= "<link rel=\"stylesheet\" type=\"text/css\" href=\"{$link}.css\">\n";
+            
+        }
+        // $txt .= "<link rel=\"stylesheet\" type=\"text/css\" href=\"{$this->cssLink}.css\">\n";
+       
+        //////  
         $txt .= "</head>\n";
         $txt .= "<body";
 
@@ -84,14 +75,6 @@ class CreateHtml
         }
 
         $txt .= ">\n";
-
-
-
-
-
-
-
-
 
 
         fwrite($myfile, $txt);
@@ -105,7 +88,10 @@ class CreateHtml
 
     public function closeHtml()
     {
-        $myfile = fopen("{$this->fileName}.html", "a") or die("Unable to open file!");
+
+        $myfile = fopen("../outdir/" . $this->fileName . ".html", "a") or die("Unable to open file!");
+
+
         $txt = "\n</body>\n\n";
         $txt .= "</html>\n";
         fwrite($myfile, $txt);
@@ -136,7 +122,11 @@ class CreateHtml
 
 
 
-
+    public function newSpan($content, $attribute = [])
+    {
+        $this->span->newSpan($content, $attribute);
+        return $this;
+    }
 
 
     public function newP($content, $attribute = [])
@@ -236,6 +226,28 @@ class CreateHtml
     public function newList($list = [], $attribute = [])
     {
         $this->list->newList($list, $attribute);
+        return $this;
+    }
+
+    public function newul( $attribute = [])
+    {
+        $this->list->newul($attribute);
+        return $this;
+    }
+    public function newli($content = [], $attribute = [])
+    {
+        $this->list->newli($content, $attribute);
+        return $this;
+    }
+    public function closeul()
+    {
+        $this->list->closeul();
+        return $this;
+    }
+
+    public function closeli()
+    {
+        $this->list->closeli();
         return $this;
     }
 

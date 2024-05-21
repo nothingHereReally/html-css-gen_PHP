@@ -12,7 +12,9 @@ class generateDiv
 
     public function newDiv($attribute = [])
     {
-        $myfile = fopen("{$this->fileName}.html", "a") or die("Unable to open file!");
+        
+        $myfile = fopen("../outdir/" . $this->fileName . ".html", "a") or die("Unable to open file!");
+
         $tag = "<div";
         foreach ($attribute as $key => $value) {
             $tag .= " $key=\"$value\"";
@@ -25,7 +27,9 @@ class generateDiv
 
     public function closeDiv()
     {
-        $myfile = fopen("{$this->fileName}.html", "a") or die("Unable to open file!");
+        ;
+        $myfile = fopen("../outdir/" . $this->fileName . ".html", "a") or die("Unable to open file!");
+
         $tag = "</div>\n";
         fwrite($myfile, $tag);
         fclose($myfile);

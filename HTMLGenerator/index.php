@@ -1,56 +1,183 @@
 <?php
-require_once "autoloader.php";
-$html = new CreateHtml('testInFinalForm', 'title', 'style', ['id' => 'css-zen-garden']);
+require_once "CreateHtml.php";
+$html = new CreateHtml('libretto', 'final project', ['../outdir/styles/cssmenu1','../outdir/styles/cssmenu2','../outdir/styles/libmenu','../outdir/styles/libretto','../outdir/styles/multimenu']);
 
-
-// $html
-//     ->newDiv(['class' => 'div', 'name' => 'div'])
-//     ->newHeader(2, "Hello", ['class' => 'test header', 'name' => 'header'])
-//     ->newP('Hello WOrld This is a Paragraph')
-//     ->newButton('Click Me', ['class' => 'test header', 'name' => 'header'])
-//     ->newInput('text')
-//     ->newlink('Facebook', 'https://www.facebook.com/', ['class' => 'fb'])
-//     ->closeDiv()
-//     ->closeHtml();
-
-
-
-// $html
-//     ->newDiv(['class' => 'link1'])
-//     ->newHeading(1, 'Welcome to My Website')
-//     ->newlink('Home', "home.com", ['class' => 'link1'])
-//     ->newlink('About', "home.com", ['class' => 'link1'])
-//     ->closeDiv()
-//     ->newDiv()
-//     ->newDiv(['id' => 'home'])
-//     ->newHeading(1, 'home', ['class' => 'about'])->newTable(2, 2, ['id' => 'head'])
-//     ->closeDiv()
-//     ->newP('asdf', ['class' => 'link1'])
-//     ->closeHtml();
 
 
 $html
-    ->newDiv(['class' => 'page-wrapper'])
+->newSection(['id'=>'header'])
+    ->newSection(['id'=>'lefthead'])
 
-    ->newSection(['class' => 'intro', 'id' => 'zen-intro'])
-    ->newHeader(['role' => 'banner'])
-    ->newHeading(1)
-    ->newHeading(2)
-    ->closeHeader()
-
-    ->newDiv(['class' => 'summary', 'id' => 'zen-summary', 'role' => 'article'])
-    ->newP('A demonstration of what can be accomplished through')
-    ->newLink('css file', '/examples/style.css', ['title' => 'This pages sample CSS, the file you may modify.'])
-    ->closeDiv()
-
-    ->newNav(['class' => 'as'])
-
-    ->newFooter()
-    ->closeFooter()
-    ->closeNav()
-    ->newList(["Apple", "Banana", "Cherry"], ["class" => "fruit-list", "id" => "myFruitList"])
-    ->newIMG("path/to/your/image.jpg", ["alt" => "Description of the image", "width" => "500"])
-    ->br()
     ->closeSection()
 
-    ->closeHtml();
+    ->newSection(['id'=>'righthead'])
+
+    ->closeSection()
+
+->closeSection()
+
+
+->newSection(['id'=>'mainmenubar']) 
+
+
+    ->newul(['id'=>'mainmenu'])
+    // ->newli("Home",["href" => "#"])->closeli()
+
+    ->newli($html->link->newLink('Home', '#'))->closeli()
+    ->newli($html->link->newLink('Reading', '#'))
+        ->newul(['class'=>'sub1'])
+        ->newli($html->link->newLink("Novels","#"))->closeli()
+        ->newli($html->link->newLink("Hardbound","#"))->closeli()
+        ->newli($html->link->newLink("Paperback","#"))->closeli()
+        ->newli($html->link->newLink("Comics","#"))->closeli()
+        ->newli($html->link->newLink("categories","#"))->closeli()
+        ->closeul()
+    ->closeli()
+    ->newli($html->link->newLink('Featured', '#'))->closeli()
+    ->newli($html->link->newLink('Orders', '#'))->closeli()
+    ->newli($html->link->newLink('Deals & offers', '#'))->closeli()
+    ->closeul()
+
+
+
+->closeSection()
+
+
+->newSection(['id'=>'maincontainer'])
+
+    ->newSection(['id'=>'headline'])
+
+        ->newSection(['id'=>'headlleft'])
+            ->newIMG('images/hunger_games_trilogy.jpg',['title'=>'The Hunger Games Trilogy', 'alt' =>'Hunger Games Trilogy'])
+        ->closeSection()
+
+        ->newSection(['id'=>'headlright'])
+            ->br()
+            ->br()
+            ->newSpan('Special Offer!!!', ['class'=>'headlineimpact'])
+
+            ->br()
+            ->newP('Limited stocks only!!!', ['class'=>'headlinetext'])
+            ->br()
+
+        ->closeSection()
+
+
+
+    ->closeSection()
+
+    ->newSection(['id'=>'left'])
+
+    ->closeSection()
+
+    ->newSection(['id'=>'right'])
+        ->newP('Book News', ['class'=>'blockheadings'])
+
+        ->newSection(['id'=>'placeholder'])
+
+            ->newSection(['class'=>'sections'])
+
+                ->newP('literature')
+                
+                ->newSpan(' &quot;Lorem ipsum dolor sit amet, consectetur adipisicing elit, 
+                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
+                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in 
+                reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla 
+                pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa 
+                qui officia deserunt mollit anim id est laborum.&quot;', ['class'=>'sectiontext'])
+
+            ->closeSection()
+
+            ->newSection(['class'=>'sections'])
+
+                ->newP('Arts')
+                
+                ->newSpan(' &quot;Lorem ipsum dolor sit amet, consectetur adipisicing elit, 
+                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
+                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in 
+                reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla 
+                pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa 
+                qui officia deserunt mollit anim id est laborum.&quot;', ['class'=>'sectiontext'])
+
+            ->closeSection()
+            ->br()
+
+            ->newSection(['class'=>'sections'])
+
+                ->newP('Drama')
+               
+                ->newSpan(' &quot;Lorem ipsum dolor sit amet, consectetur adipisicing elit, 
+                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
+                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in 
+                reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla 
+                pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa 
+                qui officia deserunt mollit anim id est laborum.&quot;', ['class'=>'sectiontext'])
+            
+            ->closeSection()
+
+            ->newSection(['class'=>'sections'])
+
+                ->newP('Science/Fiction')
+                ->newSpan(' &quot;Lorem ipsum dolor sit amet, consectetur adipisicing elit, 
+                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
+                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in 
+                reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla 
+                pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa 
+                qui officia deserunt mollit anim id est laborum.&quot;', ['class'=>'sectiontext'])
+    
+            ->closeSection()
+            ->br()
+
+            ->newSection(['class'=>'sections'])
+
+                ->newP('Horror')
+                ->newSpan(' &quot;Lorem ipsum dolor sit amet, consectetur adipisicing elit, 
+                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
+                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in 
+                reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla 
+                pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa 
+                qui officia deserunt mollit anim id est laborum.&quot;', ['class'=>'sectiontext'])
+            
+            ->closeSection()
+
+            ->newSection(['class'=>'sections'])
+                ->newP('Love Story')
+                ->newSpan(' &quot;Lorem ipsum dolor sit amet, consectetur adipisicing elit, 
+                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
+                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in 
+                reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla 
+                pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa 
+                qui officia deserunt mollit anim id est laborum.&quot;', ['class'=>'sectiontext'])
+        
+            ->closeSection()
+            
+
+
+
+        ->closeSection()
+
+    ->closeSection()
+
+->closeSection()
+
+
+
+->newSection(['id'=>'footer'])
+
+    ->newP('Copyright © International Web Development, All rights reserved 2013', ['id'=>'copyrighttext'])
+    
+
+->closeSection()
+
+->br()
+->closeHtml();
+
+
+
+

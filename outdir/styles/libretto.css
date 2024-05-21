@@ -12,7 +12,7 @@ body{
     width: 1000px;
     min-height: 200px;
 }
-#leftheader{
+#lefthead{
     height: 200px;
     width: 200px;
     background: #fff url('../images/libretto2_200px.png') no-repeat;
@@ -23,8 +23,11 @@ body{
     height: 200px;
     width: 800px;
     background: #fff url('../images/libretto_banner.png') no-repeat;
-    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
     float: left;
+}
+#mainmenu{
+    list-style: none;
 }
 #mainmenubar{
     margin: 0 auto;

@@ -12,11 +12,9 @@ class generateImage
 
     public function newIMG($source, $attribute = [])
     {
-        $myfile = fopen("{$this->fileName}.html", "a") or die("Unable to open file!");
+        
+        $myfile = fopen("../outdir/" . $this->fileName . ".html", "a") or die("Unable to open file!");
 
-        // if (!is_numeric($type) || $type < 1 || $type > 6) {
-        //     $type = 1;
-        // }
 
         $tag = "<img src=\"{$source}\"";
 
@@ -25,8 +23,7 @@ class generateImage
         }
 
         $tag .= ">\n";
-        // $tag .= $content;
-        // $tag .= "\n</h{$type}>\n";
+        
         fwrite($myfile, $tag);
         fclose($myfile);
     }

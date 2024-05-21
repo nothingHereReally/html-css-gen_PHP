@@ -17,7 +17,7 @@ $style->addID("header")
 ->addProp("width", "1000px")
 ->addProp("min-height", "200px");
 
-$style->addID("leftheader")
+$style->addID("lefthead")
 ->addProp("height", "200px")
 ->addProp("width", "200px")
 ->addProp("background", "#fff url('../images/libretto2_200px.png') no-repeat")
@@ -28,8 +28,13 @@ $style->addID("righthead")
 ->addProp("height", "200px")
 ->addProp("width", "800px")
 ->addProp("background", "#fff url('../images/libretto_banner.png') no-repeat")
-->addProp("border-top-left-radius", "25px")
+->addProp("border-top-right-radius", "25px")
 ->addProp("float", "left");
+
+//added
+
+$style->addID("mainmenu")
+->addProp("list-style","none");
 
 $style->addID("mainmenubar")
 ->addProp("margin", "0 auto")

@@ -9,35 +9,17 @@ class generateTable
 
         // return $this;
     }
-
+    //Not Modified For Directory
     public function newTable($row, $column, $attribute = [])
     {
         $myfile = fopen("{$this->fileName}.html", "a") or die("Unable to open file!");
-
-
-
-
-
-
-
+        // $myfile = fopen("../outdir/{$this->fileName}.html", "a") or die("Unable to open file!");
         $tag = "<table";
 
         foreach ($attribute as $key => $value) {
             $tag .= " $key=\"$value\"";
         }
         $tag .= ">";
-
-
-
-
-
-
-
-
-
-
-
-
 
         for ($i = 0; $i < $row; $i++) {
             $tag .= "<tr>\n";
@@ -50,15 +32,6 @@ class generateTable
         // Closing tag
         $closingTag = "</table>\n";
         $tag .= $closingTag;
-
-
-
-
-
-
-
-
-
         fwrite($myfile, $tag);
         fclose($myfile);
     }
