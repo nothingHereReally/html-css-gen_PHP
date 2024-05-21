@@ -1,3 +1,59 @@
+## Here is how to use our html generator
+### Go to index.php in the HTML generator folder to create a file for your html.
+
+#### To create a file 
+```php
+$html = new CreateHtml('file name', 'html title', 'css file name');
+```
+        
+### To add id, class, etc in the last paramater of an elements function call. For its content, add it in the first parameter or hover the function to show what are the possible parameters you can add to the element.
+#### For example
+```php
+newHeading($type, $content = '', $attribute = [])
+newHeading('this is for the type', 'this is for content', ['id'=>'idName])
+```
+
+### Here are all the funtion calls for elements and containers.
+### For elements function call
+```php
+newHeading($type, $content = '', $attribute = [])
+br()
+newIMG($source, $attribute = [])
+newP($content, $attribute = [])
+newButton($content, $attribute = [])
+newInput($type, $attribute = [])
+newLink($linkName, $link, $attribute = [])
+newFooter($attribute = [])
+closeFooter()
+newList($list = [], $attribute = [])
+newTable($row, $column, $attribute = [])
+```
+### For container type function call    
+```php
+newDiv($attribute = [])
+closeDiv()
+        
+divContainer($list = [], $attribute = [])
+        
+newSection($attribute = [])
+closeSection()
+        
+newNav($attribute = [])
+        
+closeNav()
+        
+newHeader($attribute = [])
+closeHeader()
+
+closeHtml()
+```
+### Method chaining can be done for this function call.
+### When adding an element to a list, use the variable and not method chaining. for example
+```php
+$html->newList([$html->link->newlink('asd', 'asd'), $html->list->newList([$html->link->newlink('this one', 'this one')])])   
+```
+
+
 ## How to use CSS generator:
 ### 1. Create a php file in src
 #### 1.1 The start of the file should include the following code
