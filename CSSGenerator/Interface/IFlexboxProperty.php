@@ -7,5 +7,5 @@ interface IFlexboxProperty{
     public function setFlexFlow(string $flow = "row wrap"): IFlexboxProperty;
     public function setJustifyContent(string $content = "center"): IFlexboxProperty;
     public function setAlignItems(string $item = "center"): IFlexboxProperty;
-    public function setalignContent(string $content = "space-between"): IFlexboxProperty;
+    public function setAlignContent(string $content = "space-between"): IFlexboxProperty;
 }
