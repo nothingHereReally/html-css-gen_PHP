@@ -1,4 +1,6 @@
 <?php
+require_once "../CSSGenerator/CSSGenerator.php";
+
 use Generator\CSS\CSSGenerator as CSSGen;
 
 $style = new CSSGen("*");
