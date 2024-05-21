@@ -1,4 +1,32 @@
-for contributors
+## How to use:
+### 1. Create a php file in src
+#### 1.1 The start of the file should include the following code
+```php
+<?php
+require_once "../CSSGenerator/CSSGenerator.php";
+use Generator\CSS\CSSGenerator as CSSGen;
+```
+### 2. Create a new CSSGen variable, passing a string that represents the first selector
+```php
+$style = new CSSGen("*");
+```
+### 3. Add style to current selector (string passed in CSSGen creation) by using method addProp. 
+###    First string passed is for property, Second string passed is for value.
+```php
+$style->addProp("padding", "0")
+```
+### 4. To add/switch selectors, use the addSelector method.
+###    Pass the string of desired selector.
+```php
+$style->addSelector(".menu ")
+```
+### 5. To export use the put2file method.
+### You can set custom filenames, directories, and choose whether to append or not
+```php
+$cssmenu2->put2file( $file = "example.css", $isAppend = false, $customDir = "./styles/");
+```
+
+## for contributors
 ---
 
 #### getting a copy to local computer
