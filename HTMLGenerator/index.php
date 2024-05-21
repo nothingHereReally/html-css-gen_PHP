@@ -1,6 +1,6 @@
 <?php
 require_once "CreateHtml.php";
-$html = new CreateHtml('libretto', 'final project', 'style');
+$html = new CreateHtml('libretto', 'final project', ['style','anoterh']);
 
 
 

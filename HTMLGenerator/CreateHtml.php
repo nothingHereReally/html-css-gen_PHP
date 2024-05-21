@@ -23,7 +23,9 @@ class CreateHtml
     public $link;
     private $span;
 
-    public function __construct($fileName, $title, $cssLink, $attribute = [])
+
+    // public function __construct($fileName, $title, $cssLink , $attribute = [])
+    public function __construct($fileName, $title, $cssLink=[] , $attribute = [])
     {
         $this->fileName = $fileName;
         $this->title = $title;
@@ -55,8 +57,14 @@ class CreateHtml
         $txt .= "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n";
         $txt .= "<title>{$this->title}</title>\n";
         ////// Link to your CSS file
-        $txt .= "<link rel=\"stylesheet\" type=\"text/css\" href=\"{$this->cssLink}.css\">\n";
-        $txt .= "<link rel=\"stylesheet\" type=\"text/css\" href=\"{$this->cssLink}.css\">\n";
+
+        foreach ($cssLink as $link) {
+            
+            $txt .= "<link rel=\"stylesheet\" type=\"text/css\" href=\"{$link}.css\">\n";
+            
+        }
+        // $txt .= "<link rel=\"stylesheet\" type=\"text/css\" href=\"{$this->cssLink}.css\">\n";
+       
         //////  
         $txt .= "</head>\n";
         $txt .= "<body";
