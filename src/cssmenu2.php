@@ -1,9 +1,11 @@
 <?php
+require_once "../CSSGenerator/CSSGenerator.php";
+
 use Generator\CSS\CSSGenerator as CSSGen;
 
-$cssmenu2 = new CSSGen();
+$cssmenu2 = new CSSGen(".menuHolder");
 
-$cssmenu2->addSelector(".menuHolder")
+$cssmenu2
 ->addProp("width", "650px")
 ->addProp("height", "31px")
 ->addProp("position", "relative")
@@ -43,7 +45,7 @@ $cssmenu2->addSelector(".menu li a")
 ->addProp("background", "url(slidemenu/back.png) no-repeat center top");
 
 $cssmenu2->addSelector(".menu li.first a")
-->addProp("{background", "url(slidemenu/back.png) no-repeat left top");
+->addProp("background", "url(slidemenu/back.png) no-repeat left top");
 
 $cssmenu2->addSelector(".menu li.pad")
 ->addProp("width", "90px")->addProp("height", "31px");
@@ -78,7 +80,7 @@ $cssmenu2->addSelector(".menu ul li")
 
 $cssmenu2->addSelector(".menu ul li a")
 ->addProp("width", "160px")
-->addProp("height", "height:20px")
+->addProp("height", "20px")
 ->addProp("line-height", "20px")
 ->addProp("background", "transparent");
 
@@ -86,10 +88,10 @@ $cssmenu2->addSelector(".menu:hover")
 ->addProp("height", "200px");
 
 $cssmenu2->addSelector(".menu a:hover")
-->setColor("color:#0cf");
+->setColor("#0cf");
 
 $cssmenu2->addSelector(".menu li:hover > a")
-->setColor("color:#0cf");
+->setColor("#0cf");
 
 $cssmenu2->addSelector(".menu li:hover ul")
 ->addProp("-webkit-transform", "translate(0,161px)")
@@ -97,5 +99,5 @@ $cssmenu2->addSelector(".menu li:hover ul")
 ->addProp("-o-transform", "translate(0,161px)")
 ->addProp("transform", "translate(0,161px)");
 
-$cssmenu2->put2file( $file = "cssmenu2.css", $isAppend = false, $customDir = "./styles");
+$cssmenu2->put2file( $file = "cssmenu2.css", $isAppend = false, $customDir = "../outdir/styles/");
 ?>

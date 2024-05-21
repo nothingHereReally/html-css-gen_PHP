@@ -1,4 +1,6 @@
 <?php
+require_once "../CSSGenerator/CSSGenerator.php";
+
 use Generator\CSS\CSSGenerator as CSSGen;
 
 $multimenu = new CSSGen();
@@ -79,5 +81,5 @@ $multimenu->addSelector("#copyright-box")
 ->addProp("height", "1.2rem")
 ->addProp("line-height", "1.2rem");
 
-$multimenu->put2file($file = "multimenu.css", $isAppend = false, $customDir = "./styles");
+$multimenu->put2file($file = "multimenu.css", $isAppend = false, $customDir = "../outdir/styles");
 ?>

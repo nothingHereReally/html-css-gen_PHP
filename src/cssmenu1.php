@@ -1,4 +1,5 @@
 <?php
+require_once "../CSSGenerator/CSSGenerator.php";
 use Generator\CSS\CSSGenerator as CSSGen;
 
 $cssmenu1 = new CSSGen();
@@ -35,5 +36,5 @@ $cssmenu1->addSelector("#mainmenu a:hover")
 $cssmenu1->addSelector("#mainmenu a:active")
 ->setBGColor("#f00");
 
-$cssmenu1->put2file( $file = "cssmenu1.css", $isAppend = false, $customDir = "./styles");
+$cssmenu1->put2file( $file = "cssmenu1.css", $isAppend = false, $customDir = "../outdir/styles/");
 ?>
