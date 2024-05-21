@@ -10,10 +10,6 @@ body{
 #mainmenu, .sub1, .sub2{
     list-style: none;
 }
-#mainmenu{
-    position: absolute;
-    bottom: 0;
-}
 #mainmenu li{
     width: 125px;
     position: relative;

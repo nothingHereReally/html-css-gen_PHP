@@ -12,7 +12,7 @@ $cssmenu2
 ->addProp("margin-left", "10px");
 
 $cssmenu2->addSelector(".menu, .menu ul")
-->addProp("padding", "0;")
+->addProp("padding", "0")
 ->addProp("margin", "0")
 ->addProp("list-style", "none")
 ->addProp("position", "relative")
@@ -70,7 +70,7 @@ $cssmenu2->addSelector(".menu ul")
 ->addProp("background", "#000")
 ->addProp("-webkit-box-shadow", "2px 2px 3px rgba(0, 0, 0, 0.5)")
 ->addProp("-moz-box-shadow", "2px 2px 3px rgba(0, 0, 0, 0.5)")
-->addProp("box-shadow", "px 2px 3px rgba(0, 0, 0, 0.5)")
+->addProp("box-shadow", "2px 2px 3px rgba(0, 0, 0, 0.5)")
 ->addProp("-webkit-border-radius", "8px")
 ->addProp("-moz-border-radius", "8px")
 ->addProp("border-radius", "8px");

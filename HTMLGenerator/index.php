@@ -1,6 +1,6 @@
 <?php
 require_once "CreateHtml.php";
-$html = new CreateHtml('libretto', 'final project', ['style','anoterh']);
+$html = new CreateHtml('libretto', 'final project', ['../outdir/styles/cssmenu1','../outdir/styles/cssmenu2','../outdir/styles/libmenu','../outdir/styles/libretto','../outdir/styles/multimenu']);
 
 
 
@@ -10,7 +10,7 @@ $html
 
     ->closeSection()
 
-    ->newSection(['id'=>'rightthead'])
+    ->newSection(['id'=>'righthead'])
 
     ->closeSection()
 
@@ -19,43 +19,24 @@ $html
 
 ->newSection(['id'=>'mainmenubar']) 
 
-//list wala na human
 
-//     ->newList('al')
-//     ->newList([
-//     $html->link->newLink('Home','#'), 
-//     $html->link->newLink('Reading','#'),
+    ->newul(['id'=>'mainmenu'])
+    // ->newli("Home",["href" => "#"])->closeli()
 
-//     // $html->list->newList(['asdf', ['class'=>'sub1']]),
-//     // $html->$link->newLink('Reading','#', [
-//     //     $html->list->newList([
-//     //         $html->link->newLink('Novels','#'),
-//     //         $html->link->newLink('Hardbound','#'),
-//     //         $html->link->newLink('Paperback','#'),
-//     //         $html->link->newLink('Comics','#'),
-//     //         $html->link->newLink('Categories','#'),
-//     //     ], ['class'=>'sub1'])
-//     // ]),
-//     $html->link->newLink('Featured','#'),
-//     $html->link->newLink('Orders','#'), 
-//     $html->link->newLink('Deals and Offers','#')
-//    ])    
-
-->newul()
-->newli("Home",["href" => "#"])->closeli()
-->newli("Reading",["href" => "#"])
-    ->newul()
-    ->newli($html->link->newLink("Novels","#"))->closeli()
-    ->newli($html->link->newLink("Hardbound","#"))->closeli()
-    ->newli($html->link->newLink("Paperback","#"))->closeli()
-    ->newli($html->link->newLink("Comics","#"))->closeli()
-    ->newli($html->link->newLink("categories","#"))->closeli()
+    ->newli($html->link->newLink('Home', '#'))->closeli()
+    ->newli($html->link->newLink('Reading', '#'))
+        ->newul(['class'=>'sub1'])
+        ->newli($html->link->newLink("Novels","#"))->closeli()
+        ->newli($html->link->newLink("Hardbound","#"))->closeli()
+        ->newli($html->link->newLink("Paperback","#"))->closeli()
+        ->newli($html->link->newLink("Comics","#"))->closeli()
+        ->newli($html->link->newLink("categories","#"))->closeli()
+        ->closeul()
+    ->closeli()
+    ->newli($html->link->newLink('Featured', '#'))->closeli()
+    ->newli($html->link->newLink('Orders', '#'))->closeli()
+    ->newli($html->link->newLink('Deals & offers', '#'))->closeli()
     ->closeul()
-->closeli()
-->newli("Featured",["href" => "#"])->closeli()
-->newli("Orders",["href" => "#"])->closeli()
-->newli("Deals and Offers",["href" => "#"])->closeli()
-->closeul()
 
 
 
@@ -66,17 +47,17 @@ $html
 
     ->newSection(['id'=>'headline'])
 
-        ->newSection(['id'=>'headleft'])
+        ->newSection(['id'=>'headlleft'])
             ->newIMG('images/hunger_games_trilogy.jpg',['title'=>'The Hunger Games Trilogy', 'alt' =>'Hunger Games Trilogy'])
         ->closeSection()
 
-        ->newSection(['id'=>'headright'])
+        ->newSection(['id'=>'headlright'])
             ->br()
             ->br()
-            ->newSpan('Special Offer', ['class'=>'headlineimpact'])
+            ->newSpan('Special Offer!!!', ['class'=>'headlineimpact'])
 
             ->br()
-            ->newP('Limited Stocks Only!!!', ['class'=>'headlinetext'])
+            ->newP('Limited stocks only!!!', ['class'=>'headlinetext'])
             ->br()
 
         ->closeSection()
@@ -189,7 +170,7 @@ $html
 
 ->newSection(['id'=>'footer'])
 
-    ->newP('Copyrigh C Internation', ['id'=>'copyrighttext'])
+    ->newP('Copyright © International Web Development, All rights reserved 2013', ['id'=>'copyrighttext'])
     
 
 ->closeSection()
